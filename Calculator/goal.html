@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script type="text/javascript">
+function Calculate()
+{    	
+	
+var PV = document.getElementById("Expense").value;
+var inflation = document.getElementById("PV").value;
+var ror = document.getElementById("ror").value; 
+
+	if (PV==null || PV=="" || inflation==null || inflation=="" || ror==null || ror=="")
+	{
+	alert("Please fill out all the details");
+	return false;
+	}
+	
+ else if(document.getElementById('hide2').style.display=='block') 
+{	
+	
+document.getElementById('hide2').style.display='none';
+
+}    	
+if(document.getElementById('benefits').style.display=='none') 
+{	
+	
+document.getElementById('benefits').style.display='block';
+
+}
+
+var Years = document.getElementById("RAge").value;
+var Cost = document.getElementById("LAge").value;
+var goal = document.getElementById("name").value;
+
+var Power = Math.pow((1+(ror/100)),Years);
+var hike = Math.pow((1+(inflation/100)),Years);
+var rorp = (Math.pow((1+(ror/100)),1/12))-1;
+var Powerr = Math.pow((1+rorp),Years*12);
+
+
+var CostFV;
+CostFV = Math.round((Cost*hike));
+
+var FVexisting;
+FVexisting = Math.round(PV*Power);
+
+var FV;
+FV=(CostFV-FVexisting);
+
+var SIP;
+SIP=Math.round((Math.round([(FV*rorp)/(Powerr-1)]))/(1+rorp));
+
+document.getElementById('Cost_display').innerHTML=CostFV;
+document.getElementById('savings_display').innerHTML=FVexisting;
+document.getElementById('monthly_savings').innerHTML=SIP;
+
+}
+
+
+
+
+
+function Nextpage() 
+{
+	var x=document.getElementById("name").value;
+	var y=document.getElementById("RAge").value;
+	var z=document.getElementById("LAge").value;
+if (x==null || x=="" || y==null || y=="" || z==null || z=="")
+  {
+  alert("Please fill out all the details");
+  return false;
+  }
+	
+ else if(document.getElementById('hide2').style.display=='none') { 
+            document.getElementById('hide2').style.display='block'; 
+			document.getElementById('hide').style.display='none';
+			    } 
+
+}
+
+
+function backpage() 
+{
+ if(document.getElementById('hide').style.display=='none') { 
+            document.getElementById('hide').style.display='block'; 
+        } 
+        	
+if(document.getElementById('hide2').style.display=='block') {	
+	
+document.getElementById('hide2').style.display='none';
+
+}
+
+}
+
+function backpage2() 
+{
+ if(document.getElementById('hide2').style.display=='none') { 
+            document.getElementById('hide2').style.display='block';
+        } 
+        	
+if(document.getElementById('benefits').style.display=='block') {	
+	
+document.getElementById('benefits').style.display='none';
+
+}
+
+}
+
+
+function backpage33() 
+{
+
+ if(document.getElementById('hide2').style.display=='none') { 
+            document.getElementById('hide2').style.display='block';
+			document.getElementById('benefits').style.display='none';
+
+        } 
+        	
+if(document.getElementById('benefits').style.display=='block') {	
+	
+document.getElementById('benefits').style.display='none';
+
+}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="col-50">
+<div id="hide" style="display:block;">
+<h3><u>Fill 1</u></h3>
+
+<br><label for="slider-fill">Enter your goal name</label>
+<br><input type="text" name="slider-fill" id="name" required='required'>
+
+<br><label for="slider-fill">After how many years from the present do you plan to achieve this goal?</label>
+<br><input type="number" name="slider-fill" id="RAge" min="1" required='required'>
+
+    
+<br><br><label for="slider-fill">Current expected price to achieve your goal</label>
+<br><input type="number" name="slider-fill" id="LAge" required='required'>
+      
+    
+<div><br><button class="button" style="color:green" onclick="Nextpage()">Next</button></div>
+
+
+</div>
+</div>
+
+
+<div id="hide2" class="col-50" style="display:none;">
+<h3><u>Fill 2</u></h3>
+<br><label for="slider-fill">Current money savings for your goal</label>
+<br><input type="number" name="slider-fill" id="Expense" min="0" required='required'>
+
+<br><br><label for="slider-fill">Inflation rate (%)</label>
+<br><input type="number" name="slider-fill" id="PV" min="1" max="100" required='required'>
+    
+<br><br><label for="slider-fill">Return rate (%)</label>
+<br><input type="number" name="slider-fill" id="ror" min="0" max="100" required='required'>
+
+<br><br><input type='submit' value='Calculate' style='color:green' class='form_button' onclick="Calculate()">
+				<span id='phpfmg_processing' style='display:none;'>
+                    <img id='phpfmg_processing_gif' src='admin.php?mod=image&amp;func=processing' border=0 alt='Processing...'> <label id='phpfmg_processing_dots'></label>
+  </span>
+  <div><br><button class="button" style='color:green' onclick="backpage()">Back</button></div>
+
+</div>
+
+<div id="benefits" class="col-50" style="display:none;">
+<h3><u>Your Planning for your Dream Goal</u></h3>
+<div class="col-50">
+        
+<div style="font-size:15px; font-weight:bold;"><br><br>Future cost of your dream goal: Rs <span id="Cost_display"></span></div>
+     
+<div style="font-size:15px; font-weight:bold;"><br><br>Existing Savings : Rs.<span id="savings_display" style="color:#030; font-size:20px; font-weight:bold;"></span></div>
+
+
+<div style="font-size:15px; font-weight:bold;"><br><br>Required monthly savings from present day : Rs.<span id="monthly_savings" style="color:#030; font-size:20px; font-weight:bold;"></span></div>
+
+
+<div><br><button class="button" style='color:green' onclick="backpage33()">Back</button></div>
+
+<div class='Home'><br><button><a href="home.html" style='color:green; text-decoration:none'>Go back to home</a></button></div>
+    
+         
+</div>   
+</div>
+
+</body>
+</html>

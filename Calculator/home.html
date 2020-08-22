@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+	<div class='home'>
+		<div class='one'><h2>Welcome to the one stop calculator for your future planning</h2></div>
+		<div class='sip'><a href="sip.html" style='font-weight:bold; text-decoration:none; font-size:18px; color:#2F4F4F'>SIP calculator</span></a></div>
+		<br><br><div class='retire'><br><a href="retirement.html" style='font-weight:bold; text-decoration:none; font-size:18px; color:#2F4F4F'>Retirement Planning</a></div>
+		<br><br><div class='goal' id='link'><br><a onclick = "doit()" href="javascript:void" style='font-weight:bold; text-decoration:none; font-size:18px; color:#2F4F4F'>Goal calculator</a>
+	
+		<div id = "goal1" class="col-60"  style="display:block;">
+		<br><br><a href="dream_home.html" style='font-weight:bold; text-decoration:none; font-size:18px; color:#2F4F4F'>Dream Home</a>
+		<br><br><a href="vacation.html" style='font-weight:bold; text-decoration:none; font-size:18px; color:#2F4F4F'>Dream Vacation</a>
+		<br><br><a href="car.html" style='font-weight:bold; text-decoration:none; font-size:18px; color:#2F4F4F'>Dream Car</a>
+		<br><br><a href="goal.html" style='font-weight:bold; text-decoration:none; font-size:18px; color:#2F4F4F'>Custom Goal</a>
+		</div>
+	</div>
+	
+	<script>
+	function doit{
+		x = document.getElementById('goal1');
+		if (x.style.display === 'none')
+		{
+			x.style.display = 'block';
+		}
+		else {
+			x.style.display = 'none';
+		}
+	}
+	</script>
+</body>
+</html>

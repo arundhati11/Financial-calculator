@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script type="text/javascript">
+function Calculate()
+{
+var PV = document.getElementById("PV").value;
+var Expense = document.getElementById("Expense").value;
+var roi = document.getElementById("roi").value;   
+var expected = document.getElementById("expected").value; 
+
+	if (PV==null || PV=="" || Expense==null || Expense=="" || roi==null || roi=="" || expected==null || expected=="")
+	{
+	alert("Please fill out all the details");
+	return false;
+	}
+	
+	else if(document.getElementById('hide2').style.display=='block') 
+	{	
+	document.getElementById('hide2').style.display='none';
+	}    	
+	if(document.getElementById('benefits').style.display=='none') 	
+	{	
+	document.getElementById('benefits').style.display='block';
+	}
+
+var Age = document.getElementById("Age").value;
+var RAge = document.getElementById("RAge").value;
+var LAge = document.getElementById("LAge").value;
+var inflation = document.getElementById("inflation").value; 
+var pri = document.getElementById("pri").value; 
+  
+    
+    
+    
+var Yearsleft;
+Yearsleft =Number(RAge-Age);
+var Yearsafter;
+Yearsafter =Number(LAge-RAge);
+var Power = Math.pow((1+(inflation/100)),Yearsleft);
+ 
+    
+var AExpenses;
+AExpenses = Number(Expense*12);
+var FVExpenses;
+FVExpenses = Number(AExpenses*Power);
+var ror = Number(((1+pri/100)/(1+inflation/100))-1);    
+
+var power1 = Math.pow(1+(ror),(-Yearsafter));
+var power2 = Number(1-power1);
+
+var RHS = Number((FVExpenses/(ror*power2))*(1+ror));    
+
+
+var troi = Math.pow((1+(roi/100)),Yearsleft);
+var troi2 = Number(PV*troi);   
+var FV =  Math.round(troi2); 
+    
+var remaining1 = Number(RHS-troi2);    
+var remaining = Number(RHS-FV);    
+    
+    
+   
+    
+    
+    
+var corpus;
+corpus = Math.round(RHS);  
+    
+    
+var temp1 = Number(1+expected/100);
+var temp2 = Math.pow(temp1,1/12);
+
+var temp3 = Number(temp2-1);
+    
+var temp4 = Number(1+temp3);    
+
+var powerr = Math.pow(temp4,Yearsleft*12); 
+    
+var MonthlySIP1 = Number((remaining1*temp3)/(powerr-1)); 
+var MonthlySIP2 = Number(MonthlySIP1/(1+temp3));    
+var MonthlySIP = Math.round(MonthlySIP2);    
+    
+
+document.getElementById('Provision_display').innerHTML=FV;
+
+document.getElementById('corpus_display').innerHTML=corpus;
+document.getElementById('MonthlySIP_display').innerHTML=MonthlySIP;
+drawChart(remaining,FV) 
+
+
+var price = document.getElementById("Provision_display").innerHTML;
+  $("#Provision_display").html(Number(price).toLocaleString('en-IN')); 
+
+var price = document.getElementById("corpus_display").innerHTML;
+  $("#corpus_display").html(Number(price).toLocaleString('en-IN')); 
+
+var price = document.getElementById("MonthlySIP_display").innerHTML;
+  $("#MonthlySIP_display").html(Number(price).toLocaleString('en-IN'));
+
+
+
+}
+    
+
+   
+
+
+function Nextpage() 
+{
+	var Age = document.getElementById("Age").value;
+	var RAge = document.getElementById("RAge").value;
+	var LAge = document.getElementById("LAge").value;
+	var inflation = document.getElementById("inflation").value; 
+	var pri = document.getElementById("pri").value; 
+	
+	if (Age==null || Age=="" || RAge==null || RAge=="" || LAge==null || LAge=="" || inflation==null || inflation=="" || pri==null || pri=="")
+	{
+	alert("Please fill out all the details");
+	return false;
+	}
+	
+ else if(document.getElementById('hide2').style.display=='none') { 
+            document.getElementById('hide2').style.display='block'; 
+			
+        } 
+        	
+if(document.getElementById('hide').style.display=='block') {	
+	
+document.getElementById('hide').style.display='none';
+
+}
+
+}
+
+function Nextpage2() 
+{
+ if(document.getElementById('benefits').style.display=='none') { 
+            document.getElementById('benefits').style.display='block'; 
+			
+        } 
+        	
+if(document.getElementById('hide2').style.display=='block') {	
+	
+document.getElementById('hide2').style.display='none';
+
+}
+
+}
+
+
+function backpage() 
+{
+ if(document.getElementById('hide').style.display=='none') { 
+            document.getElementById('hide').style.display='block'; 
+        } 
+        	
+if(document.getElementById('hide2').style.display=='block') {	
+	
+document.getElementById('hide2').style.display='none';
+
+}
+
+}
+
+
+function backpage33() 
+{
+
+ if(document.getElementById('hide2').style.display=='none') { 
+            document.getElementById('hide2').style.display='block';
+			document.getElementById('benefits').style.display='none';
+
+        } 
+        	
+if(document.getElementById('benefits').style.display=='block') {	
+	
+document.getElementById('benefits').style.display='none';
+
+}
+
+}
+	
+
+
+</script>
+
+</head>
+
+<body>
+
+<div class="col-50">
+<div id="hide" style="display:block;">
+<h3><u>Fill 1</u></h3>
+<label for="slider-fill">Current age</label>
+<br><input type="number" name="slider-fill" id="Age" min="18" max="100" required= 'required'>
+<br><br><label for="slider-fill">Expected retirement age</label>
+<br><input type="number" name="slider-fill" id="RAge" min="50" max="70" required='required'>
+
+    
+<br><br><label for="slider-fill">Life expectancy age</label>
+<br><input type="number" name="slider-fill" id="LAge" min="50" max="100" required='required'>
+    
+
+<br><br><label for="slider-fill">Inflation Rate (%)</label>
+<br><input type="number" name="slider-fill" id="inflation" min="0" max="20" required='required'>  
+    
+<br><br><label for="slider-fill">Post retirement interest rate (%)</label>
+<br><input type="number" name="slider-fill" id="pri" min="0" max="60" required='required'>    
+    
+<div><br><button class="button" style="color:green" onclick="Nextpage()">Next</button></div>
+
+
+</div>
+</div>
+
+
+<div id="hide2" class="col-50" style="display:none;">
+<h3><u>Fill 2</u></h3>
+<br><label for="slider-fill">Monthly savings after requirement to live comfortably</label>
+<br><input type="number" name="slider-fill" id="Expense" min="15000" max="500000" required='required'>
+<br><br><label for="slider-fill">Current savings for retirement</label>
+<br><input type="number" name="slider-fill" id="PV" min="0" max="10000000" required='required'>
+    
+ 
+<br><br><label for="slider-fill">Expected return on existing investments (%)</label>
+<br><input type="number" name="slider-fill" id="roi" min="0" max="30" required='required'>
+    
+
+<br><br><label for="slider-fill">Expected return on new investment (%)</label>
+<br><input type="number" name="slider-fill" id="expected" min="0" max="30" required='required'>
+    
+
+    
+    
+
+ <br><br><input type='submit' value='Calculate' style='color:green' class='form_button' onclick="Calculate()">
+				<span id='phpfmg_processing' style='display:none;'>
+                    <img id='phpfmg_processing_gif' src='admin.php?mod=image&amp;func=processing' border=0 alt='Processing...'> <label id='phpfmg_processing_dots'></label>
+  </span>
+  <div><br><button class="button" style='color:green' onclick="backpage()">Back</button></div>
+
+</div>
+
+<div id="benefits" class="col-50" style="display:none;">
+<h3><u>Your Planning</u></h3>
+<div class="col-50">
+    
+<div style="font-size:15px; font-weight:bold;">Retirement Corpus : Rs.<span id="corpus_display" style="color:#030; font-size:20px; font-weight:bold;"></span></div>
+       
+    
+<div style="font-size:15px; font-weight:bold;"><br><br>Provision Made : Rs.<span id="Provision_display"></span></div>
+    
+ 
+<div style="font-size:15px; font-weight:bold;"><br><br>Required Monthly Savings : Rs.<span id="MonthlySIP_display" style="color:#030; font-size:20px; font-weight:bold;"></span></div>
+
+<div><br><button class="button" style='color:green' onclick="backpage33()">Back</button></div>
+
+<div class='Home'><br><button><a href="home.html" style='color:green; text-decoration:none'>Go back to home</a></button></div>
+    
+     
+    
+</div>
+    
+</div>
+
+
+
+
+</body>
+</html>

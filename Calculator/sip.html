@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script type="text/javascript">
+function Calculat()
+{
+var Returnn = document.getElementById("Return").value;
+var Years = document.getElementById("Installments").value;
+var SIP = document.getElementById("SIP").value;
+
+	if (Returnn==null || Returnn=="" || Years==null || Years=="" || SIP==null || SIP=="")
+	{
+	alert("Please fill out all the details");
+	return false;
+	}
+	
+	else if(document.getElementById('benefits').style.display=='none') { 
+		document.getElementById('benefits').style.display='block'; 
+	} 
+        	
+	if(document.getElementById('hide').style.display=='block') {	
+		document.getElementById('hide').style.display='none';
+	}
+
+
+    
+
+var convertmonthly = (Returnn/12) / 100;
+var i = Math.pow((1+convertmonthly),Years*12);
+var Investment = (SIP*Years*12);
+
+Total_amount = Math.round((SIP)*[(i-1)/(convertmonthly)]*(1+convertmonthly)) ;
+
+var Earnings = (Total_amount - Investment);
+document.getElementById('future').innerHTML=Total_amount;
+document.getElementById('inves').innerHTML=Investment;
+document.getElementById('ear').innerHTML=Earnings;
+    
+         
+}
+
+</script>
+</head>
+
+<body>
+<div id="hide" class="col-50" style="display:block;">
+	<h3> SIP calculator</h3>
+	<label for="invest">Enter SIP amount</label>
+	<input type="number" name="invest" id="SIP" min="500" max="100000" required= 'required'>
+	<label for="rate">Expected rate of return(%)</label>
+	<input type="number" name="rate" id="Return" min="1" required= 'required'>
+	<label for="install">No. of years </label>
+	<input type="number" name="install" id="Installments" min = "1" required= 'required'>
+	<div>
+	<br><button class="button" onclick="Calculat()">Calculate</button>
+	<div class='Home'><br><button><a href="home.html" style='color:green; text-decoration:none'>Go back to home</a></button></div>
+	</div>
+  
+</div>
+<div id="benefits" class="col-70" style="display:none;">
+		<div style="font-size:15px; font-weight:bold;">The maturity value of your SIP : Rs <span id="future" style="color:#030; font-size:18px; font-weight:bold;"></span></div>
+		<div style="font-size:15px; font-weight:bold;"><br><br>Your Investment : Rs <span id="inves" style="color:#030; font-size:18px; font-weight:bold;"></span></div>
+		
+		<div style="font-size:15px; font-weight:bold;"><br><br>Your Earnings : Rs <span id="ear" style="color:#030; font-size:18px; font-weight:bold;"></span></div>
+		<div><br><button><a href="home.html" style='color:green; text-decoration:none;'>Go back to home</a></button></div>
+  
+</div>
+
+
+</div>
+</body>
+</html>

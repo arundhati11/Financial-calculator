@@ -1,0 +1,137 @@
+
+.col-50 {
+	-ms-flex: 50%;
+	flex: 50%;
+	background-color: #8FBC8F;
+	border-radius : 20px;
+}
+
+.button{
+	color: green;
+}
+.header{
+	-ms-flex: 50%;
+	flex: 50%;
+	background-color: #8FBC8F;
+	border-radius : 20px;
+}
+
+
+
+.col-70 {
+	border-radius : 20px;
+	padding: 30px;
+	size: 18px;
+	background-color: #8FBC8F;	
+}
+
+.home {
+	border-radius : 30px;
+	padding: 20px;
+	background-color: #8FBC8F;
+}
+
+.retire {
+	border-radius : 50px;
+	padding: 30px;
+	color: #2F4F4F;
+	size: 18px;
+	background-color: #F5F5F5;
+}
+
+.sip{
+	border-radius : 50px;
+	padding: 30px;
+	color: #2F4F4F;
+	size: 18px;
+	background-color: #F5F5F5;
+}
+
+.goal{
+	border-radius : 50px;
+	padding: 30px;
+	color: #2F4F4F;
+	size: 18px; 
+	background-color: #F5F5F5;
+}
+
+.calc {
+	position: absolute;
+	left: 2%;
+	bottom: 60%;
+	
+}
+
+
+.col-50
+{
+	padding: 0 20px;
+}
+
+.left {
+	display: inline-block; 
+	width: 600px; 
+	position: relative;
+	}
+
+.benefits  {
+	width: 800px;
+	}
+
+.container{
+	background-color: #f2f2f2;
+	padding: 5px 20px 15px 20px;
+	border: 1px solid lightgrey;
+	border-radius: 10px;
+}
+.link {
+	background-color: green;
+	color: white;
+	border-radius: 20px
+}
+
+.link:hover {
+	border-radius: 5px;
+	background-color: #45a060;
+}
+
+input[type=text] {
+	width: 50%;
+	margin-bottom: 20px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+label {
+	margin-bottom: 5px;
+	display: block;
+}
+
+.btn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 12px;
+	margin: 10px 0;
+	border: none;
+	width:  50%;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 17px;
+}
+
+.btn:hover {
+	background-color: #45a060;
+}
+
+
+
+@media (max-width:800px) {
+	.row {
+		flex-direction: column-reverse;
+	}
+	.col-50 {
+		margin-bottom: 10px;
+	}
+	}
+}
